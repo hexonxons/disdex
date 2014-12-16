@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dex</string>
+
+    <string-array name="header_elements">
+        <item>magic</item>
+        <item>adler32Checksum</item>
+        <item>signature</item>
+        <item>fileSize</item>
+        <item>headerSize</item>
+        <item>endiannessTag</item>
+        <item>linkSize</item>
+        <item>linkOffset</item>
+        <item>mapOffset</item>
+        <item>stringIdsSize</item>
+        <item>stringIdsOffset</item>
+        <item>typeIdsSize</item>
+        <item>typeIdsOffset</item>
+        <item>prototypeIdsSize</item>
+        <item>prototypeIdsOffset</item>
+        <item>fieldIdsSize</item>
+        <item>fieldIdsOffset</item>
+        <item>methodIdsSize</item>
+        <item>methodIdsOffset</item>
+        <item>classDefinitionsSize</item>
+        <item>classDefinitionsOffset</item>
+        <item>dataSize</item>
+        <item>dataOffset</item>
+    </string-array>
+
+</resources>

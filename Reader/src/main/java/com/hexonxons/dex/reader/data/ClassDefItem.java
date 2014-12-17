@@ -1,13 +1,5 @@
 package com.hexonxons.dex.reader.data;
 
-import com.hexonxons.dex.reader.util.Size;
-import com.hexonxons.dex.reader.exception.DexException;
-
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 public class ClassDefItem
 {
     /**
@@ -73,64 +65,4 @@ public class ClassDefItem
      * Base type is uint. <br/>
      */
     public int staticValuesOff  = Integer.MIN_VALUE;
-
-    public ClassDefItem(RandomAccessFile raf, ByteOrder order) throws DexException, IOException
-    {
-        byte[] buffer = new byte[Size.UINT];
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read class index.");
-        }
-
-        classIdx = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read class access flag.");
-        }
-
-        accessFlags = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read class super index.");
-        }
-
-        superclassIdx = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read class interfaces offset.");
-        }
-
-        interfacesOff = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read class source file index.");
-        }
-        sourceFileIdx = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read class annotations offset.");
-        }
-
-        annotationsOff = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read class data offset.");
-        }
-
-        classDataOff = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read class static values offset.");
-        }
-
-        staticValuesOff = ByteBuffer.wrap(buffer).order(order).getInt();
-    }
 }

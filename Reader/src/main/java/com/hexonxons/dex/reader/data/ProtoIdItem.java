@@ -1,13 +1,5 @@
 package com.hexonxons.dex.reader.data;
 
-import com.hexonxons.dex.reader.util.Size;
-import com.hexonxons.dex.reader.exception.DexException;
-
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 public class ProtoIdItem
 {
     /**
@@ -29,30 +21,4 @@ public class ProtoIdItem
      * Base type is uint. <br/>
      */
     public int parametersOff    = Integer.MIN_VALUE;
-
-    public ProtoIdItem(RandomAccessFile raf, ByteOrder order) throws DexException, IOException
-    {
-        byte[] buffer = new byte[Size.UINT];
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read proto item index.");
-        }
-
-        shortyIdx = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read proto item return type.");
-        }
-
-        returnTypeIdx = ByteBuffer.wrap(buffer).order(order).getInt();
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read proto item parameters offset.");
-        }
-
-        parametersOff = ByteBuffer.wrap(buffer).order(order).getInt();
-    }
 }

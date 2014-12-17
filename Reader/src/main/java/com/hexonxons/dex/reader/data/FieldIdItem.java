@@ -1,13 +1,5 @@
 package com.hexonxons.dex.reader.data;
 
-import com.hexonxons.dex.reader.util.Size;
-import com.hexonxons.dex.reader.exception.DexException;
-
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 public class FieldIdItem
 {
     /**
@@ -28,32 +20,4 @@ public class FieldIdItem
      * Base type is uint. <br/>
      */
     public int nameIdx      = Integer.MIN_VALUE;
-
-    public FieldIdItem(RandomAccessFile raf, ByteOrder order) throws DexException, IOException
-    {
-        byte[] buffer = new byte[Size.USHORT];
-
-        if(raf.read(buffer, 0, Size.USHORT) != Size.USHORT)
-        {
-            throw new DexException("Can't read field class index.");
-        }
-
-        classIdx = ByteBuffer.wrap(buffer).order(order).getShort();
-
-        if(raf.read(buffer, 0, Size.USHORT) != Size.USHORT)
-        {
-            throw new DexException("Can't read field type index.");
-        }
-
-        typeIdx = ByteBuffer.wrap(buffer).order(order).getShort();
-
-        buffer = new byte[Size.UINT];
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read field name.");
-        }
-
-        nameIdx = ByteBuffer.wrap(buffer).order(order).getInt();
-    }
 }

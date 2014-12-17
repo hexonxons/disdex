@@ -1,12 +1,5 @@
 package com.hexonxons.dex.reader.data;
 
-import com.hexonxons.dex.reader.util.Utils;
-import com.hexonxons.dex.reader.exception.DexException;
-
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteOrder;
-
 public class EncodedMethod
 {
     /**
@@ -28,11 +21,4 @@ public class EncodedMethod
      * Base type is uleb128. <br/>
      */
     public int codeOff  = Integer.MIN_VALUE;
-
-    public EncodedMethod(RandomAccessFile raf, ByteOrder order) throws DexException, IOException
-    {
-        methodIdxDiff = Utils.readUleb128(raf);
-        accessFlags = Utils.readUleb128(raf);
-        codeOff = Utils.readUleb128(raf);
-    }
 }

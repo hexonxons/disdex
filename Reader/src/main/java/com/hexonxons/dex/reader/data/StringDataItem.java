@@ -1,12 +1,5 @@
 package com.hexonxons.dex.reader.data;
 
-import com.hexonxons.dex.reader.util.Utils;
-import com.hexonxons.dex.reader.exception.DexException;
-
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteOrder;
-
 public class StringDataItem
 {
     /**
@@ -23,10 +16,4 @@ public class StringDataItem
      * Base type is ubyte[]. <br/>
      */
     public String data      = null;
-
-    public StringDataItem(RandomAccessFile raf, ByteOrder order) throws DexException, IOException
-    {
-        utf16Size = Utils.readUleb128(raf);
-        data = raf.readUTF();
-    }
 }

@@ -16,16 +16,4 @@ public class StringIdItem
      * Base type is uint. <br/>
      */
     public int stringDataOff    = Integer.MIN_VALUE;
-
-    public StringIdItem(RandomAccessFile raf, ByteOrder order) throws DexException, IOException
-    {
-        byte[] buffer = new byte[Size.UINT];
-
-        if(raf.read(buffer, 0, Size.UINT) != Size.UINT)
-        {
-            throw new DexException("Can't read string offset.");
-        }
-
-        stringDataOff = ByteBuffer.wrap(buffer).order(order).getInt();
-    }
 }

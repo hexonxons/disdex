@@ -1,12 +1,5 @@
 package com.hexonxons.dex.reader.data;
 
-import com.hexonxons.dex.reader.util.Utils;
-import com.hexonxons.dex.reader.exception.DexException;
-
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteOrder;
-
 public class EncodedField
 {
     /**
@@ -21,10 +14,4 @@ public class EncodedField
      * Base type is uleb128. <br/>
      */
     public int accessFlags  = Integer.MIN_VALUE;
-
-    public EncodedField(RandomAccessFile raf, ByteOrder order) throws DexException, IOException
-    {
-        fieldIdxDiff = Utils.readUleb128(raf);
-        accessFlags = Utils.readUleb128(raf);
-    }
 }
